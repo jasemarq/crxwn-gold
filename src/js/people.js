@@ -1,5 +1,5 @@
 let animal = {
-  animalType: 'animal',
+  animalType: null,
 
   describe () {
     return `An ${this.animalType} with ${this.furColor} fur,
