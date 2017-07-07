@@ -1,38 +1,51 @@
-let people = require('./people.js');
+let Tweets = require('./Twitter.js');
 let $ = require('jquery');
 const http = require('http');
 const parse = require('parse-json-response');
+const config = require('../config/config.js');
 
-function onInit() { http.get({
-  hostname: 'localhost',
-  port: 8080,
-  path: '/twitter/',
-  agent: false
-}, (res) => {
-  console.log();
-  $('body').append(res.statusCode);
-})
-}
+var Lyrics = [];
 
-function onInit2() { http.get({
-  hostname: 'localhost',
-  port: 8080,
-  path: '/twitter/',
-  agent: false
+// Function to retrieve lyrics. Need to refactor code.
+function init() {
+
+  http.get({
+  hostname: config.hostname,
+  port: config.port,
+  path: config.path,
+  agent: config.agent
+
 }, parse(function(er, data, res) {
   if (er)
   console.error('it failed', res.headers, er)
   else {
-    console.log('it worked', res.headers, data)
-
-    for(var i=0; i<data.length; i++) {
-      $('body').append(data[i].text);
-      $('body').append('<br />');
-    }
-
+  storeLyrics(data);
   }}))}
 
+function storeLyrics(data) {
 
-onInit2();
+  for(var i=0; i<data.length; i++) {
+    Lyrics[i] = data[i];
+
+  };
+
+  render(Lyrics);
+
+  return Lyrics;
+}
+
+
+function render(lyrics) {
+
+  $('body').append('<h3>'+Lyrics[9].text+'</h3>')
+
+}
+
+
+
+init();
+
+
+
 
 //$('body').append('<h1>'+people.describe()+'</h1>');
