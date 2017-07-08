@@ -5,6 +5,8 @@ const config = require('../config/config.js');
 
 var Lyrics = [];
 
+
+
 // Function to retrieve lyrics. Need to refactor code.
 function init() {
 
@@ -45,8 +47,8 @@ function rendera(lyrics) {
 import {Scene, ImageUtils, Fog, WebGLRenderer, PlaneGeometry, Mesh, PerspectiveCamera, AmbientLight, SpotLight, MeshLambertMaterial, BoxGeometry, MeshBasicMaterial} from 'three';
 import {EffectComposer, GlitchPass, RenderPass} from "postprocessing";
 
-init();
-animate();
+//init();
+//animate();
 
 var camera, scene, renderer, composer, glitchPass, texture, material, plane;
 
